@@ -29,6 +29,6 @@ public class UndoSteps {
     }
 
     private String undo() {
-        return "Hell";
+        return buffer.substring(0, buffer.length() - 1);
     }
 }
