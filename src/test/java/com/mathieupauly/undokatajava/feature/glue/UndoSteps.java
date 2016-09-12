@@ -7,6 +7,7 @@ import cucumber.api.java.en.When;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class UndoSteps {
+    private boolean appendLogged;
     private String buffer;
 
     @Given("^no operation has been performed$")
@@ -15,6 +16,7 @@ public class UndoSteps {
 
     @Given("^append has been performed$")
     public void append_has_been_performed() {
+        appendLogged = true;
     }
 
     @Given("^the buffer printed \"([^\"]*)\"$")
@@ -33,6 +35,9 @@ public class UndoSteps {
     }
 
     private String undo() {
-        return buffer.substring(0, buffer.length() - 1);
+        if (appendLogged) {
+            return buffer.substring(0, buffer.length() - 1);
+        }
+        return buffer;
     }
 }
