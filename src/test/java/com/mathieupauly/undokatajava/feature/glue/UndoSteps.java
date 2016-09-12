@@ -9,6 +9,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class UndoSteps {
     private String buffer;
 
+    @Given("^no operation has been performed$")
+    public void no_operation_has_been_performed() {
+    }
+
     @Given("^append has been performed$")
     public void append_has_been_performed() {
     }
