@@ -19,6 +19,10 @@ public class UndoSteps {
         appendLogged = true;
     }
 
+    @Given("^delete \"([^\"]*)\" has been performed$")
+    public void delete_has_been_performed(String arg1) throws Throwable {
+    }
+
     @Given("^the buffer printed \"([^\"]*)\"$")
     public void the_buffer_printed(String buffer) {
         this.buffer = buffer;
