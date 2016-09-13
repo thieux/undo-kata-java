@@ -32,7 +32,7 @@ public class UndoSteps {
 
     @When("^writer performs undo command$")
     public void writer_performs_undo_command() {
-        buffer = undo();
+        buffer = undo(buffer);
     }
 
     @Then("^the buffer should print \"([^\"]*)\"$")
@@ -40,7 +40,7 @@ public class UndoSteps {
         assertThat(buffer).isEqualTo(expectedBuffer);
     }
 
-    private String undo() {
+    private String undo(String buffer) {
         if (deleted != null) {
             return buffer + deleted;
         }
