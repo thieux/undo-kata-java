@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class UndoSteps {
     private boolean appendLogged;
     private String buffer;
+    private String deleted;
 
     @Given("^no operation has been performed$")
     public void no_operation_has_been_performed() {
@@ -20,7 +21,8 @@ public class UndoSteps {
     }
 
     @Given("^delete \"([^\"]*)\" has been performed$")
-    public void delete_has_been_performed(String arg1) throws Throwable {
+    public void delete_has_been_performed(String deleted) {
+        this.deleted = deleted;
     }
 
     @Given("^the buffer printed \"([^\"]*)\"$")
@@ -39,6 +41,9 @@ public class UndoSteps {
     }
 
     private String undo() {
+        if (deleted != null) {
+            return buffer + deleted;
+        }
         if (appendLogged) {
             return buffer.substring(0, buffer.length() - 1);
         }
